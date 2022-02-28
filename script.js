@@ -1,4 +1,4 @@
-let buttonE1 = document.querySelector(`save-task`);
+let buttonE1 = document.querySelector(`#save-task`);
 let tasksToDoE1 = document.querySelector(`#tasks-to-do`);
 
 let createTaskHandler = function() {
