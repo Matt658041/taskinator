@@ -133,12 +133,13 @@ let taskStatusChangeHandler = function(event) {
   console.log(event.target.value);
 
   // find task list item based on event.target's data-task-id attribute
-  var taskId = event.target.getAttribute("data-task-id");
+  let taskId = event.target.getAttribute("data-task-id");
 
-  var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
+  // find the parent task item element based on the id 
+  let taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
 
   // convert value to lower case
-  var statusValue = event.target.value.toLowerCase();
+  let statusValue = event.target.value.toLowerCase();
 
   if (statusValue === "to do") {
     tasksToDoEl.appendChild(taskSelected);
@@ -175,7 +176,7 @@ let editTask = function(taskId) {
 let deleteTask = function(taskId) {
   console.log(taskId);
   // find task list element with taskId value and remove it
-  var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
+  let taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
   taskSelected.remove();
 };
 
