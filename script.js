@@ -64,9 +64,13 @@ let createTaskEl = function(taskDataObj) {
   taskDataObj.id = taskIdCounter;
 
   tasks.push(taskDataObj);
-
+  
   // increase task counter for next unique id
   taskIdCounter++;
+  
+  let saveTasks = function() {
+    localStorage.setItem("tasks", JSON.stringify (tasks));
+  }
   
 };
 
@@ -123,6 +127,9 @@ let completeEditTask = function(taskName, taskType, taskId) {
       tasks[i].name = taskName;
       tasks[i].type = taskType;
     }
+    let saveTasks = function() {
+      localStorage.setItem("tasks",JSON.stringify (tasks));
+    }
   };
 
 
@@ -151,7 +158,7 @@ let taskButtonHandler = function(event) {
 };
 
 let taskStatusChangeHandler = function(event) {
-  console.log(event.target.value);
+  
 
   // find task list item based on event.target's data-task-id attribute
   let taskId = event.target.getAttribute("data-task-id");
@@ -175,20 +182,23 @@ let taskStatusChangeHandler = function(event) {
       tasks[i].status = statusValue;
     }
   } 
+  let saveTasks = function() {
+    localStorage.setItem("tasks", JSON.stringify (tasks));
+  }
 };
 
 let editTask = function(taskId) {
-  console.log(taskId);
+  
 
   // get task list item element
   let taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
 
   // get content from task name and type
   let taskName = taskSelected.querySelector("h3.task-name").textContent;
-  console.log(taskName);
+  
 
   let taskType = taskSelected.querySelector("span.task-type").textContent;
-  console.log(taskType);
+  
 
   // write values of taskname and taskType to form to be edited
   document.querySelector("input[name='task-name']").value = taskName;
@@ -201,7 +211,7 @@ let editTask = function(taskId) {
 };
 
 let deleteTask = function(taskId) {
-  console.log(taskId);
+  
   // find task list element with taskId value and remove it
   let taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
   taskSelected.remove();
@@ -212,10 +222,16 @@ let deleteTask = function(taskId) {
     if (tasks[i].id !== parseInt(taskId)) {
       updatedTaskArr.push(tasks[i]);
     }
+    let saveTasks = function() {
+      localStorage.setItem("tasks",JSON.stringify (tasks));
+    }
   }
   // reassign tasks array to the teh same as updatedTask Array
   tasks = updatedTaskArr;
 };
+let saveTasks = function() {
+  localStorage.setItem("tasks", JSON.stringify (tasks));
+}
 
 // Create a new task
 formEl.addEventListener("submit", taskFormHandler);
