@@ -232,6 +232,22 @@ let deleteTask = function(taskId) {
 let saveTasks = function() {
   localStorage.setItem("tasks", JSON.stringify (tasks));
 }
+/* create load tasks funtions */
+/* Get tasks from local storage */
+/* Converts tasks from sting to array  aka parsing */
+/* Iterates through array and creates task elements */
+let loadTasks = function () {
+  tasks = localStorage.getItem("tasks");
+
+  if (!savedtasks) {
+      return false;
+  }
+  tasks = JSON.parse(savedTasks);
+  for (let i = 0; i < saveTasks.length; i++){
+    createTaskEl(savedTasks[i]);
+  }
+}
+
 
 // Create a new task
 formEl.addEventListener("submit", taskFormHandler);
